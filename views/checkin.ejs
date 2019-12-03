@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"-->
+    <title>首頁</title>
+    
+    <style>
+        body, html{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: monospace;
+        box-sizing: border-box;
+        transition: all ease-in-out .2s;   
+    }
+    #container{
+        top: 50PX;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    nav{
+        display: block;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 200px;
+        margin-left: 0px;
+        height: 100%;   
+        background-color: #333333 ;
+    
+    }
+    #logo{
+    
+    height: 50px;
+    background-color: #00AA00;
+    color: #f7f7f7;
+    text-align: center;
+    line-height: 50px;
+    font-size: 1.3em;
+    font-family: arial;
+    }
+    #menu{
+        width: 100%;
+        background-color: #333333;
+    }
+    
+    #menu li{
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        
+    }
+    
+    #menu li>a { 
+        font-size: 0.8em;
+        font-family: arial;
+        width: 100%;
+        height: 100%;
+        color: #f7f7f7;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+    }
+    #menu li:hover{
+        background-color: #151515;
+        
+    }
+    #menu li>a:hover{
+        color: #1e90ff;
+    }
+    header{
+        width: calc(100% - 200px);
+        height: 50px;
+        position: absolute;
+        display: block;
+        top: 100px;
+        left: 200px;
+        background-color: #00AA00;
+        color: #00AA00;
+        line-height: 40px;
+    }
+    header #links {
+        
+        float: right;
+        height: 60px;
+        display: block;
+        color: #f7f7f7;
+        font-size: 2em;
+        
+    }
+    #links>a{
+        text-decoration: none;
+        padding: 0.25em;
+        height: 100%;
+        width: 100%;
+        display: block;
+        float: right;
+        border:0.5px blue solid;
+        color: blue;
+    }
+    
+    #user-name{
+        line-height: 50px;
+        
+        color: blue;
+        float:right;
+        font-size: 2em;
+    }
+    #user-name>p{
+        color: blue;
+        float:right;
+        height: 100%;
+        width: 100%;
+    }
+    
+    #links:hover{
+    background-color: #1e90ff;
+    }
+    
+    main{
+        top: 200px;
+        position: absolute;
+        left: 200px;
+       
+    }
+    
+    .main_func_text{
+        color: #1322ec;
+       font-size: large;
+    
+    }
+    
+    main #table{
+        height: 600px;
+        width: 600px; 
+    }
+    
+    main #info-menu{
+       float: left;
+      }
+    select{
+    width: 100px;
+    }
+    .inputer{
+        margin: 20px;
+      }
+        </style>
+
+ 
+  
+</head>
+<body>
+        <img src="https://1.bp.blogspot.com/-5LGvxa85lK4/XeZzyMnlLaI/AAAAAAAARtM/IJTYFA6b35QWYmQHhta9u1cTPFiAGqI8gCLcBGAsYHQ/s1600/homeTitlePicture.jpg" >
+    <div id="container">
+        <nav>
+            <div id="logo">
+                會議管理系統                
+            </div>
+            <ul id=menu>
+                <li><a href="/homepage">首頁</a></li>
+                <li><a href="/reservation">會議查詢/預約</a></li>
+                <li><a href="/checkin">會議簽到</a></li>
+                <li><a href="/record">會議記錄</a></li>
+                <li><a href="/edit">編輯會議/參加人員</a></li>
+            </ul>
+        </nav>   
+        <header>
+            <div id="links">
+                <a href="/logout">登出</a>
+            </div>
+            <div id="user-name">
+                <h3>使用者:<%= user.username %></h3>
+            </div>
+        </header> 
+        <main>
+            
+        </main> 
+    </div>    
+    <script src=""></script>
+</body>
+</html>

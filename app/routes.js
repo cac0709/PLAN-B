@@ -28,12 +28,35 @@ module.exports = function(app, passport) {
   });
  });
 
+ app.get('/checkin', isLoggedIn, function(req, res){
+  res.render('checkin.ejs', {
+   user:req.user
+  });
+ });
+
+ app.get('/edit', isLoggedIn, function(req, res){
+  res.render('edit.ejs', {
+   user:req.user
+  });
+ });
+
+ app.get('/record', isLoggedIn, function(req, res){
+  res.render('record.ejs', {
+   user:req.user
+  });
+ });
+
+ app.get('/reservation', isLoggedIn, function(req, res){
+  res.render('reservation.ejs', {
+   user:req.user
+  });
+ });
+
  app.get('/logout', function(req,res){
   req.logout();
   res.redirect('/');
  })
 };
-
 function isLoggedIn(req, res, next){
  if(req.isAuthenticated())
   return next();

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"-->
+    <title>首頁</title>
+    <style>
+        body, html{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: monospace;
+        box-sizing: border-box;
+        transition: all ease-in-out .2s;   
+    }
+    #container{
+        top: 50PX;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    nav{
+        display: block;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 200px;
+        margin-left: 0px;
+        height: 100%;   
+        background-color: #333333 ;
+    
+    }
+    #logo{
+    
+    height: 50px;
+    background-color: #00AA00;
+    color: #f7f7f7;
+    text-align: center;
+    line-height: 50px;
+    font-size: 1.3em;
+    font-family: arial;
+    }
+    #menu{
+        width: 100%;
+        background-color: #333333;
+    }
+    
+    #menu li{
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        
+    }
+    
+    #menu li>a { 
+        font-size: 0.8em;
+        font-family: arial;
+        width: 100%;
+        height: 100%;
+        color: #f7f7f7;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+    }
+    #menu li:hover{
+        background-color: #151515;
+        
+    }
+    #menu li>a:hover{
+        color: #1e90ff;
+    }
+    header{
+        width: calc(100% - 200px);
+        height: 50px;
+        position: absolute;
+        display: block;
+        top: 100px;
+        left: 200px;
+        background-color: #00AA00;
+        color: #00AA00;
+        line-height: 40px;
+    }
+    header #links {
+        
+        float: right;
+        height: 60px;
+        display: block;
+        color: #f7f7f7;
+        font-size: 2em;
+        
+    }
+    #links>a{
+        text-decoration: none;
+        padding: 0.25em;
+        height: 100%;
+        width: 100%;
+        display: block;
+        float: right;
+        border:0.5px blue solid;
+        color: blue;
+    }
+    
+    #user-name{
+        line-height: 50px;
+        
+        color: blue;
+        float:right;
+        font-size: 2em;
+    }
+    #user-name>p{
+        color: blue;
+        float:right;
+        height: 100%;
+        width: 100%;
+    }
+    
+    #links:hover{
+    background-color: #1e90ff;
+    }
+    
+    main{
+        top: 200px;
+        position: absolute;
+        left: 200px;
+       
+    }
+    
+    .main_func_text{
+        color: #1322ec;
+       font-size: large;
+    
+    }
+    
+    main #table{
+        height: 600px;
+        width: 600px; 
+    }
+    
+    main #info-menu{
+       float: left;
+      }
+    select{
+    width: 100px;
+    }
+    .inputer{
+        margin: 20px;
+      }
+        </style>
+</head>
+<body>
+    <img src="https://1.bp.blogspot.com/-5LGvxa85lK4/XeZzyMnlLaI/AAAAAAAARtM/IJTYFA6b35QWYmQHhta9u1cTPFiAGqI8gCLcBGAsYHQ/s1600/homeTitlePicture.jpg" >
+<div id="container">
+    <nav>
+        <div id="logo">
+            會議管理系統                
+        </div>
+        <ul id=menu>
+            <li><a href="/homepage">首頁</a></li>
+            <li><a href="/reservation">會議查詢/預約</a></li>
+            <li><a href="/checkin">會議簽到</a></li>
+            <li><a href="/record">會議記錄</a></li>
+            <li><a href="/edit">編輯會議/參加人員</a></li>
+        </ul>
+    </nav>   
+    <header>
+        <div id="links">
+            <a href="/logout">登出</a>
+        </div>
+        <div id="user-name">
+            <h3>使用者:<%= user.username %></h3>
+        </div>
+    </header> 
+    <main>
+    <form action="" method="post">
+      <div class="main_func" id="selectByEq_fbtn">
+        <div class="main_func_text">預約資料</div>
+        <h3>會議編號: 000000</h3>
+        <h3>申請人: Giorno Giovanna</h3>
+        <h3>申請人單位: 專題孤兒院</h3>
+        <h3>分機: 000000</h3>
+       </div>
+       <div class="inputer">
+        會議名稱：<input type="text" name="MeetingName" class="inparea">
+        </div>
+              <div class="inputer">
+                      會議室編號：<select name="RoomID" class="inparea">
+                              <option value ="">第一會議室</option>
+                              <option value ="">第二會議室</option>
+                              <option value ="b">第三會議室</option>
+                              <option value ="c">第四會議室</option>
+                      </select>
+              </div>                          
+              <div class="inputer">
+                     開會日期：<input type="date" name="EXPdate" class="inparea">
+              </div>
+              
+                      <div class="inputer">
+                      開始時間：<select name="StartTime" class="inparea">
+                              <option value ="">7:00</option>
+                              <option value ="">8:00</option>
+                              <option value ="">9:00</option>
+                              <option value ="">10:00</option>
+                              <option value ="">11:00</option>
+                              <option value ="">12:00</option>
+                              <option value ="">13:00</option>
+                              <option value ="">14:00</option>
+                              <option value ="">15:00</option>
+                              <option value ="">16:00</option>
+                              <option value ="">17:00</option>
+                      </select>
+                      </div>        
+                      <div class="inputer">
+                              結束時間：<select name="StartTime" class="inparea">
+                                      <option value ="">8:00</option>
+                                      <option value ="">9:00</option>
+                                      <option value ="">10:00</option>
+                                      <option value ="">11:00</option>
+                                      <option value ="">12:00</option>
+                                      <option value ="">13:00</option>
+                                      <option value ="">14:00</option>
+                                      <option value ="">15:00</option>
+                                      <option value ="">16:00</option>
+                                      <option value ="">17:00</option>
+                                      <option value ="">18:00</option>
+                              </select>
+                      </div>
+                              <div class="inputer">
+                                      開會單位：<select name="RoomID" class="inparea">
+                                              <option value ="">婦產科</option>
+                                              <option value ="">精神科</option>
+                                              <option value ="">泌尿科</option>
+                                              <option value ="">科科</option>
+                                      </select>
+                              </div>
+                              <div class="inputer">
+                                開會單位：<select name="MeetingType" class="inparea">
+                                        <option value ="">忘記要開會了</option>
+                                        <option value ="">今天放假</option>
+                                        <option value ="">出國</option>
+                                        <option value ="">要去總院幫忙</option>
+                                </select>
+                        </div>                     
+              <div class="form-btn">
+                  <button type="submit" value="submit" class="btn btn-primary">確定</button>
+            </div>
+          </form>  
+    </main> 
+</div>    
+<script src="homepage.js"></script>
+</body>
+</html>
