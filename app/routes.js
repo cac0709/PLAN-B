@@ -1,15 +1,11 @@
 module.exports = function(app, passport) {
  app.get('/', function(req, res){
-  res.render('index.ejs');
- });
-
- app.get('/login', function(req, res){
   res.render('login.ejs', {message:req.flash('loginMessage')});
  });
 
  app.post('/login', passport.authenticate('local-login', {
   successRedirect: '/profile',
-  failureRedirect: '/login',
+  failureRedirect: '/error',
   failureFlash: true
  }),
   function(req, res){
@@ -20,8 +16,12 @@ module.exports = function(app, passport) {
    }
    res.redirect('/');
   });
-
- app.get('/signup', function(req, res){
+  app.get('/error', function(req, res){
+    res.render('error.ejs', {
+       user:req.user
+    });
+   });
+/* app.get('/signup', function(req, res){
   res.render('signup.ejs', {message: req.flash('signupMessage')});
  });
 
@@ -30,7 +30,7 @@ module.exports = function(app, passport) {
   failureRedirect: '/signup',
   failureFlash: true
  }));
-
+*/
  app.get('/profile', isLoggedIn, function(req, res){
   res.render('profile.ejs', {
    user:req.user

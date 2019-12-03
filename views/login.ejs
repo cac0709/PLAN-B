@@ -4,42 +4,63 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
- <title>Login Register</title>
- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
- <link rel="stylesheet" 
- href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+ <title>登入系統</title>
  <style>
-  html{
-   padding:50px;
-  }
+ body{
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/d/db/Cathay_General_Hospital_HQ_20160723.jpg");;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.login-form {
+    width: 400px;
+    height: 280px;
+    padding: 13px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -200px;
+    background-color: rgba(240, 255, 255, 0.5);
+    border-radius: 10px;
+    text-align: center;
+}
+.image_logo {
+    margin-top: 25px;
+ }
+.login-form input[type="password"],
+.login-form input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #dddddd;
+    margin-bottom: 15px;
+    box-sizing:border-box;
+}
+.login-form input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: #00AA00;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+}
  </style>
 </head>
 <body>
- <div class="container">
-  <div class="col-sm-6 col-sm-offset-3">
-   <h2>Login</h2>
-
+  <div class="login-form">
+        <p id="image_logo"><img src="https://www.cgh.org.tw/tw/img/cgh03.gif"></p>
    <% if(message.length > 0) { %>
     <div class="alert alert-danger"><%= message %></div> 
    <% } %>
 
    <form action="/login" method="post">
-    <div class="form-group">
-     <label>Username</label>
-     <input type="text" class="form-control" name="username">
-    </div>
-    <div class="form-group">
-     <label>Password</label>
-     <input type="text" class="form-control" name="password">
-    </div>
-
-    <button type="submit" class="btn btn-succcess btn-lg">Login</button>
+    <input type="text" name="username" placeholder="Userid" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <input type="submit" value="登入">
    </form>
 
-   <hr>
 
-   <p>Need an account <a href="/signup">Register</a></p>
-   <p>Go Back <a href="/">Home</a>.</p>
   </div>
  </div>
 </body>

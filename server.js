@@ -32,4 +32,4 @@ app.use(flash());
 require('./app/routes.js')(app, passport);
 
 app.listen(port);
-console.log("Port: " + port);
+console.log("已啟動在http://localhost:8080/");

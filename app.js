@@ -1,7 +1,7 @@
-var app = express(); 
-var login = require('./routes/login');
+var app = express();
+var login = require('./app/routes/login');
 app.use('/login', login);
-app.use('/reg', reg);
+
 
 
 
