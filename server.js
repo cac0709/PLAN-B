@@ -29,6 +29,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+app.get(/(.*)\.(jpg|gif|png|ico|css|js|txt)/i, function(req, res) {
+    res.sendfile(__dirname + "/" + req.params[0] + "." + req.params[1], function(err) {
+        if (err) res.send(404);});
+    });
+
 require('./app/routes.js')(app, passport);
 
 app.listen(port);

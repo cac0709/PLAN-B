@@ -1,0 +1,144 @@
+body, html{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+*{
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+    box-sizing: border-box;
+    transition: all ease-in-out .2s;   
+}
+#container{
+    top: 50PX;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+nav{
+    display: block;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 200px;
+    margin-left: 0px;
+    height: 100%;   
+    background-color: #333333 ;
+
+}
+#logo{
+
+height: 50px;
+background-color: #00AA00;
+color: #f7f7f7;
+text-align: center;
+line-height: 50px;
+font-size: 1.3em;
+font-family: arial;
+}
+#menu{
+    width: 100%;
+    background-color: #333333;
+}
+
+#menu li{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    
+}
+
+#menu li>a { 
+    font-size: 0.8em;
+    font-family: arial;
+    width: 100%;
+    height: 100%;
+    color: #f7f7f7;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+#menu li:hover{
+    background-color: #151515;
+    
+}
+#menu li>a:hover{
+    color: #1e90ff;
+}
+header{
+    width: calc(100% - 200px);
+    height: 50px;
+    position: absolute;
+    display: block;
+    top: 100px;
+    left: 200px;
+    background-color: #00AA00;
+    color: #00AA00;
+    line-height: 40px;
+}
+header #links {
+    
+    float: right;
+    height: 50px;
+    display: block;
+    color: #f7f7f7;
+    font-size: 2em;
+    
+}
+#links>a{
+    text-decoration: none;
+    padding: 0.25em;
+    height: 100%;
+    width: 100%;
+    display: block;
+    float: right;
+    border:0.5px blue solid;
+    color: blue;
+}
+
+#user-name{
+    line-height: 50px;
+    
+    color: blue;
+    float:right;
+    font-size: 2em;
+}
+#user-name>p{
+    color: blue;
+    float:right;
+    height: 100%;
+    width: 100%;
+}
+
+#links:hover{
+background-color: #1e90ff;
+}
+
+main{
+    top: 200px;
+    position: absolute;
+    left: 200px;
+   
+}
+
+.main_func_text{
+    color: #1322ec;
+   font-size: large;
+
+}
+
+main #table{
+    height: 600px;
+    width: 600px; 
+}
+
+main #info-menu{
+   float: left;
+  }
+select{
+width: 100px;
+}
+.inputer{
+    margin: 20px;
+  }
