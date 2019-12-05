@@ -166,6 +166,7 @@
                 會議管理系統                
             </div>
             <ul id=menu>
+                <li><a href="/homepage">首頁</a></li>
                 <li><a href="/reservation">會議查詢/預約</a></li>
                 <li><a href="/checkin">會議簽到</a></li>
                 <li><a href="/record">會議記錄</a></li>
@@ -198,10 +199,7 @@
                     <tr><td>15:00~16:00</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
                     <tr><td>16:00~17:00</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
                     <tr><td>17:00~18:00</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
-                    <div id="info-menu">
-                        <!--div class ="hide_selecter" id="selectByEquit"-->
-                        <form action="" method="post">   
-                            
+                    <div id="info-menu">       
                             <div class="main_func_text">會議排程</div>
                             <div class="inputer" id="search-date">
                                 起始日期：<input type="date" name="SearchStartDate" class="inparea" id="SearchStartDate">
@@ -210,65 +208,67 @@
                                     <button type="submit" value="submit" >下一周</button>
                                 </div>
                             </div>
+                            <form action="datainsert" method="post">
                             <div class="main_func" id="selectByEq_fbtn">
                               <div class="main_func_text">預約會議室</div>
                              </div>
-                                    <div class="inputer">
-                                            會議室編號：<select name="RoomID" class="inparea">
-                                                    <option value ="">第一會議室</option>
-                                                    <option value ="">第二會議室</option>
-                                                    <option value ="b">第三會議室</option>
-                                                    <option value ="c">第四會議室</option>
+                                    <div class="inputer" name="room" type= "text" >
+                                            會議室編號：<select name="meetingroom" class="inparea"type="text">
+                                                    <option value ="一號會議室" >一號會議室</option>
+                                                    <option value = "二號會議室">二號會議室</option>
+                                                    <option value = "三號會議室">三號會議室</option>
+                                                    <option value = "四號會議室">四號會議室</option>
                                             </select>
                                     </div>                          
-                                    <div class="inputer">
-                                           開會日期：<input type="date" name="MeetingDate" class="inparea" id="MeetingDate">
+                                    <div class="inputer" name="MeetingDate" >
+                                           開會日期：<input type="date" name="opendate" class="inparea" type="Date">
                                     </div>
                                     
-                                            <div class="inputer">
-                                            開始時間：<select name="StartTime" class="inparea">
-                                                    <option value ="">7:00</option>
-                                                    <option value ="">8:00</option>
-                                                    <option value ="">9:00</option>
-                                                    <option value ="">10:00</option>
-                                                    <option value ="">11:00</option>
-                                                    <option value ="">12:00</option>
-                                                    <option value ="">13:00</option>
-                                                    <option value ="">14:00</option>
-                                                    <option value ="">15:00</option>
-                                                    <option value ="">16:00</option>
-                                                    <option value ="">17:00</option>
+                                            <div class="inputer" name="start" type="text">
+                                            開始時間：<select name="StartTime" class="inparea" type="text">
+                                                    <option value ="7:00">7:00</option>
+                                                    <option value ="8:00">8:00</option>
+                                                    <option value ="9:00">9:00</option>
+                                                    <option value ="10:00">10:00</option>
+                                                    <option value ="11:00">11:00</option>
+                                                    <option value ="12:00">12:00</option>
+                                                    <option value ="13:00">13:00</option>
+                                                    <option value ="14:00">14:00</option>
+                                                    <option value ="15:00">15:00</option>
+                                                    <option value ="16:00">16:00</option>
+                                                    <option value ="17:00">17:00</option>
                                             </select>
                                             </div>        
-                                            <div class="inputer">
-                                                    結束時間：<select name="StartTime" class="inparea">
-                                                            <option value ="">8:00</option>
-                                                            <option value ="">9:00</option>
-                                                            <option value ="">10:00</option>
-                                                            <option value ="">11:00</option>
-                                                            <option value ="">12:00</option>
-                                                            <option value ="">13:00</option>
-                                                            <option value ="">14:00</option>
-                                                            <option value ="">15:00</option>
-                                                            <option value ="">16:00</option>
-                                                            <option value ="">17:00</option>
-                                                            <option value ="">18:00</option>
+                                            <div class="inputer"  name="end" type="text">
+                                                    結束時間：<select name="endtime" class="inparea"type="text">
+                                                            <option value ="8:00">8:00</option>
+                                                            <option value ="9:00">9:00</option>
+                                                            <option value ="10:00">10:00</option>
+                                                            <option value ="11:00">11:00</option>
+                                                            <option value ="12:00">12:00</option>
+                                                            <option value ="13:00">13:00</option>
+                                                            <option value ="14:00">14:00</option>
+                                                            <option value ="15:00">15:00</option>
+                                                            <option value ="16:00">16:00</option>
+                                                            <option value ="17:00">17:00</option>
+                                                            <option value ="18:00">18:00</option>
                                                     </select>
                                             </div>
-                                                    <div class="inputer">
-                                                            開會單位：<select name="RoomID" class="inparea">
-                                                                    <option value ="">婦產科</option>
-                                                                    <option value ="">精神科</option>
-                                                                    <option value ="">泌尿科</option>
-                                                                    <option value ="">科科</option>
+                                                    <div class="inputer" name="unit" type="text">
+                                                            開會單位：<select name="position" class="inparea"type="text">
+                                                                    <option value ="婦產科">婦產科</option>
+                                                                    <option value ="精神科">精神科</option>
+                                                                    <option value ="泌尿科">泌尿科</option>
+                                                                    <option value ="科科">科科</option>
                                                             </select>
                                                     </div>               
                                     <div class="form-btn">
                                     <button type="submit" value="submit" class="btn btn-primary">下一步</button>
                                     </div>
+                            </form>
                                 <!--/div--> 
-                                
-                                </form>
+                           
+                              
                             </div>
                     </div>    
                 </main>  

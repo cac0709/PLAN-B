@@ -34,6 +34,12 @@ app.get(/(.*)\.(jpg|gif|png|ico|css|js|txt)/i, function(req, res) {
         if (err) res.send(404);});
     });
 
+
+
+
+
+
+    
 require('./app/routes.js')(app, passport);
 
 app.listen(port);
