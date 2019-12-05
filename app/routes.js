@@ -78,9 +78,6 @@ module.exports = function(app) {
    user:req.user
   });
  });
- app.get('/reservation/:id', isLoggedIn, function(req, res){
-        res.render('reservation', { ID: req.params.id, Qstr: req.query.qstr });
-});
 
  app.post('/datainsert' ,urlencodedParser, function(req, res) {
       res.redirect('/complete');
@@ -100,7 +97,8 @@ module.exports = function(app) {
       var room = req.body.meetingroom
       var MeetingDate = req.body.opendate
       var position = req.body.position
-		  var sql = "INSERT INTO reservation (roomid,starttime,endtime,opendate,position ) VALUES ('"+room+"','"+start+ "' ,'"+end+ "','"+MeetingDate+ "','"+position+ "')";
+      var meetingname = req.body.meetingname
+		  var sql = "INSERT INTO reservation (roomid,starttime,endtime,opendate,position,meetingname ) VALUES ('"+room+"','"+start+ "' ,'"+end+ "','"+MeetingDate+ "','"+position+ "','"+meetingname+ "')";
       console.log(sql);
 		  con.query(sql, function (err, result) {
 			  	console.log(result);
