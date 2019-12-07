@@ -101,7 +101,7 @@ var sqlforsearch = 'select * from reservation where (roomid="'+ searchroom +'" O
      console.log('搜尋結果',rows);
      data.reservation = rows;
      if (err)  {
-            throw err;
+            res.redirect('errorre');
             } else {
               res.render('searchpage',{data:data.reservation});
             }
