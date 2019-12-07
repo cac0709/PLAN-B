@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({
 
 app.set('view engine', 'ejs');
 
+
 app.use(session({
  secret: 'justasecret',
  resave:true,
