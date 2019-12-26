@@ -5,155 +5,14 @@
     <!--meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge"-->
     <title>首頁</title>
-    
-    <style>
-        body, html{
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-    *{
-        margin: 0;
-        padding: 0;
-        font-family: monospace;
-        box-sizing: border-box;
-        transition: all ease-in-out .2s;   
-    }
-    #container{
-        top: 50PX;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    }
-    nav{
-        display: block;
-        position: absolute;
-        top: 100px;
-        left: 0;
-        width: 200px;
-        margin-left: 0px;
-        height: 100%;   
-        background-color: #333333 ;
-    
-    }
-    #logo{
-    
-    height: 50px;
-    background-color: #00AA00;
-    color: #f7f7f7;
-    text-align: center;
-    line-height: 50px;
-    font-size: 1.3em;
-    font-family: arial;
-    }
-    #menu{
-        width: 100%;
-        background-color: #333333;
-    }
-    
-    #menu li{
-        width: 100%;
-        height: 50px;
-        line-height: 50px;
-        
-    }
-    
-    #menu li>a { 
-        font-size: 0.8em;
-        font-family: arial;
-        width: 100%;
-        height: 100%;
-        color: #f7f7f7;
-        display: block;
-        text-align: center;
-        text-decoration: none;
-    }
-    #menu li:hover{
-        background-color: #151515;
-        
-    }
-    #menu li>a:hover{
-        color: #1e90ff;
-    }
-    header{
-        width: calc(100% - 200px);
-        height: 50px;
-        position: absolute;
-        display: block;
-        top: 100px;
-        left: 200px;
-        background-color: #00AA00;
-        color: #00AA00;
-        line-height: 40px;
-    }
-    header #links {
-        
-        float: right;
-        height: 60px;
-        display: block;
-        color: #f7f7f7;
-        font-size: 2em;
-        
-    }
-    #links>a{
-        text-decoration: none;
-        padding: 0.25em;
-        height: 100%;
-        width: 100%;
-        display: block;
-        float: right;
-        border:0.5px blue solid;
-        color: blue;
-    }
-    
-    #user-name{
-        line-height: 50px;
-        
-        color: blue;
-        float:right;
-        font-size: 2em;
-    }
-    #user-name>p{
-        color: blue;
-        float:right;
-        height: 100%;
-        width: 100%;
-    }
-    
-    #links:hover{
-    background-color: #1e90ff;
-    }
-    
-    main{
-        top: 200px;
-        position: absolute;
-        left: 200px;
-       
-    }
-    
-    .main_func_text{
-        color: #1322ec;
-       font-size: large;
-    
-    }
-    
-    main #table{
-        height: 600px;
-        width: 600px; 
-    }
-    
-    main #info-menu{
-       float: left;
-      }
-    select{
-    width: 100px;
-    }
-    .inputer{
-        margin: 20px;
-      }
-        </style>
-
- 
+    <link rel="stylesheet" href="style/css/homepage.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/kendo/css/kendo.common-material.min.css">
+    <link rel="stylesheet" href="/kendo/css/kendo.material.min.css">
+    <script src="/jquery/jquery-2.1.4.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="/kendo/js/kendo.all.min.js"></script>
+<script src="http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js"></script>
   
 </head>
 <body>
@@ -169,6 +28,7 @@
                 <li><a href="/checkin">會議簽到</a></li>
                 <li><a href="/record">會議記錄</a></li>
                 <li><a href="/edit">編輯會議/參加人員</a></li>
+                <li><a href="/membertest">excel測試</a></li>
             </ul>
         </nav>   
         <header>
@@ -180,9 +40,180 @@
             </div>
         </header> 
         <main>
+                <div id = "searchfun">
+                    <div class="main_fbtn" id="selectByEq_fbtn">
+                            <h5 class="main_func_text">使用資料搜尋</h5>
+    
+                    </div>
+                    <div class ="hide_selecter" id="selectBydata"></div>
+                <div class="inputer" name="searchroomid" >
+                    會議室編號：<select name="searchroomid" class="inparea"type="text" id = "searchroom_id">
+                            <option value ="一號會議室" >一號會議室</option>
+                            <option value = "二號會議室">二號會議室</option>
+                            <option value = "三號會議室">三號會議室</option>
+                            <option value = "四號會議室">四號會議室</option>
+                    </select>
+                <div class="inputer"  name="searchstarttime" >
+                    開始時間：<select name="searchstarttime" class="inparea"type="text"id ="starttime_id">
+                            <option value ="7:00">7:00</option>
+                            <option value ="8:00">8:00</option>
+                            <option value ="9:00">9:00</option>
+                            <option value ="10:00">10:00</option>
+                            <option value ="11:00">11:00</option>
+                            <option value ="12:00">12:00</option>
+                            <option value ="13:00">13:00</option>
+                            <option value ="14:00">14:00</option>
+                            <option value ="15:00">15:00</option>
+                            <option value ="16:00">16:00</option>
+                            <option value ="17:00">17:00</option>
+                    </select>
+                </div>
+                <div class="inputer"name="searchendtime" >
+                    結束時間：<select name="searchendtime" class="inparea"type="text"id = "endtime_id">
+                            <option value ="8:00">8:00</option>
+                            <option value ="9:00">9:00</option>
+                            <option value ="10:00">10:00</option>
+                            <option value ="11:00">11:00</option>
+                            <option value ="12:00">12:00</option>
+                            <option value ="13:00">13:00</option>
+                            <option value ="14:00">14:00</option>
+                            <option value ="15:00">15:00</option>
+                            <option value ="16:00">16:00</option>
+                            <option value ="17:00">17:00</option>
+                            <option value ="18:00">18:00</option>
+                    </select>
+            </div>
+              
+                <div class="inputer" name="searchopendate">
+                    開會日期：<input type="date" name="searchopendate" class=" form-control" type="Date" id = "date_id">
+             </div>
+             <div class="inputer" name="searchdepartment" >
+                開會單位：<select name="searchdepartment" class="inparea"type="text"id = "department_id">
+                        <option value ="婦產科">婦產科</option>
+                        <option value ="精神科">精神科</option>
+                        <option value ="泌尿科">泌尿科</option>
+                        <option value ="科科">科科</option>
+                </select>
+        </div>               
+        <div class="inputer"  name="searchtopic">
+            會議名稱：<input name="searchtopic" class="inparea"type="text"id = "meetname_id">
+         </div>
+         <div class="inputer"  name="searchtopic">
+                會議代碼：<input name="searchmeetingroomcode" class="inparea"type="int" id="meetcode_id">
+             </div>
+            </table>
+            <div class="form-btn">
+                <button class="btn btn-danger" id="clean_btn">清除</button>
+                <button type="submit" value="submit" class="btn btn-primary" id = "search">搜尋</button>
+                </div>
+                <div id="data_grid" class="col-12" style="margin: 4%;margin-top: 0%;"></div>
             
+                </main> 
+            </div>
+        </div>
+    </div> 
+    
+    
+    
+    </body>
+    <script>
+        $(document).ready(function(){
+        $("#title_bar").hide();   
+        $(".hide_selecter").hide();
+                $("#searchroom_id").val("");
+                $("#starttime_id").val("");
+                $("#endtime_id").val("");
+                $("#date_id").val("");
+                $("#department_id").val("");
+                $("#meetname_id").val("");
+                $("#meetcode_id").val("");
+          
+          $("#search").click(function(){
+            $("#searchfun").toggle(200);
+            $(".hide_selecter").toggle(200);
+          });
+          $("#starttime_id").kendoMaskedTextBox(); 
+        
+        $("#endtime_id").kendoMaskedTextBox(); 
+    
+          $("#clean_btn").click(function(){
+            $("#searchroom_id").val("");
+                $("#starttime_id").val("");
+                $("#endtime_id").val("");
+                $("#date_id").val("");
+                $("#department_id").val("");
+                $("#meetname_id").val("");
+                $("#meetcode_id").val("");
+      })
+    });
+        
+        var gridCount = 0;
+        $("#search").click(function(){
+        
+                if (gridCount != 0) {
+                 $("#data_grid").data('kendoGrid').destroy();
+                }
+                $("#searchfun").toggle(200);
+                $("#title_bar").show();
+                gridCount++;
+                var params = {
+                        "ROOMID" : $("#searchroom_id").val(),
+                        "STARTTIME" : $("#starttime_id").val(),
+                        "ENDTIME" : $("#endtime_id").val(),
+                        "OPENDATE" : $("#date_id").val(),
+                        "DEPARTMENT" : $("#department_id").val(),
+                        "MEETINGNAME" : $("#meetname_id").val(),
+                        "MEETCODE" : $("#meetcode_id").val(),
+                };
+        
+        
+                $("#data_grid").kendoGrid({
+                  dataSource:{
+                        transport: {
+                            read: {
+                                method: "post",
+                                url: "/checkin",
+                                dataType: "json",
+                                data: params
+                            }
+                        },
+                        schema: {
+                            model: {
+                                fields: {
+                                    ROOMID: { type: "text" },
+                                    STARTTIME: { type: "text" },
+                                    ENDTIME: { type: "text" },
+                                    OPENDATE: { type: "date" },
+                                    DEPARTMENT: { type: "text" },
+                                    MEETINGNAME: { type: "text" },
+                                    MEETCODE: { type: "int" },
+                                }
+                            }
+                        },
+                        pageSize: 20,
+                    },
+                  height:600,
+                  columns:[
+                          {field:"ROOMID",title:"使用會議室",width:"8%"},
+                          {field:"STARTTIME",title:"開始時間",width:"10%"},
+                          {field:"ENDTIME",title:"結束時間",width:"10%"},
+                          {field:"OPENDATE",title:"日期",width:"10%"},
+                          {field:"DEPARTMENT",title:"部門",width:"10%"},
+                          {field:"MEETINGNAME",title:"主題",width:"10%"},
+                          {field:"MEETCODE",title:"會議代碼",width:"10%"},
+                  ],
+                  sortable:true,
+                  scrollable: true,
+                                sortable: true,
+                                pageable: {
+                                    input: true,
+                                    numeric: false
+                                },
+          });
+        });
+        
+        </script>
         </main> 
     </div>    
-    <script src=""></script>
 </body>
 </html>

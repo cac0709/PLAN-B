@@ -5,16 +5,30 @@
   "start": "node ./server"
  },
  "dependencies": {
+  "async": "^3.1.0",
   "bcrypt-nodejs": "0.0.3",
   "body-parser": "^1.19.0",
   "connect-flash": "^0.1.1",
   "cookie-parser": "^1.4.4",
+  "csv-parse": "^4.8.2",
+  "csv-parser": "^2.3.2",
   "ejs": "^2.7.4",
   "express": "^4.17.1",
   "express-session": "^1.17.0",
+  "fast-csv": "^3.5.0",
+  "fs": "0.0.1-security",
   "morgan": "^1.9.1",
+  "multer": "^1.4.2",
   "mysql": "^2.17.1",
+  "node-xlsx": "^0.15.0",
+  "opts": "^1.2.7",
   "passport": "^0.2.2",
-  "passport-local": "^1.0.0"
+  "passport-local": "^1.0.0",
+  "path": "^0.12.7",
+  "xls-to-json": "^0.5.4",
+  "xls-to-json-lc": "^0.3.4",
+  "xlsx": "^0.15.3",
+  "xlsx-to-json": "^0.3.0",
+  "xlsx-to-json-lc": "^0.5.0"
  }
 }
