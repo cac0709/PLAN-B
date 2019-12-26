@@ -9,7 +9,7 @@
         body, html{
         width: 100%;
         height: 100%;
-        overflow: hidden;
+
     }
     *{
         margin: 0;
@@ -182,8 +182,16 @@
             </div>
         </header> 
         <main>
-            
-        </main> 
+            <form class="fileupload" action="upload" method="post" enctype="multipart/form-data">
+               
+                <%for(var i = 0;i<meetingdata.length;i++){%>
+                   <h1>會議名稱:<%=meetingdata[i].meetingname%></h1>
+                    <h2>會議代碼:<%=meetingdata[i].meetingroomcode%></h2>
+                <input type="file" name="upfile" value="">
+                <input type="submit" />
+            <%}%>
+            </form>
+        </main>
     </div>    
 </body>
 </html>

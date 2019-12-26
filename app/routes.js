@@ -6,10 +6,11 @@ var passport  = require('passport');
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
-
+var upload = require('express-fileupload');
+var formidable = require('formidable');
+const multer = require('multer')
 module.exports = function(app) {
-
-
+  
   app.get(/(.*)\.(jpg|gif|png|ico|css|js|txt)/i, function(req, res) {
     res.sendfile(__dirname + "/" + req.params[0] + "." + req.params[1], function(err) {
         if (err) res.send(404);});
@@ -61,11 +62,11 @@ module.exports = function(app) {
       })
 
 app.get('/checkin', isLoggedIn, function(req, res){
-
 res.render('checkin', {
    user:req.user
   });
  });
+
  app.post('/checkin', function(req, res) {
   var con = mysql.createConnection({
     host: "localhost",
@@ -97,6 +98,16 @@ con.query(sqlforsearch, function(err, rows) {
    user:req.user
   });
  });
+ app.get('/errorforupload', isLoggedIn, function(req, res){
+  res.render('errorforupload', {
+  });
+ });
+ app.get('/completeforupload', isLoggedIn, function(req, res){
+  res.render('completeforupload', {
+  
+  });
+ });
+ 
  
  
  
@@ -131,20 +142,54 @@ con.query(sqlforsearch, function(err, rows) {
    })
 
   });
+  app.use(upload());
+  app.post('/upload',function(req,res){
+    console.log(req.files);
+    if(req.files.upfile){
+      var file = req.files.upfile,
+        name = file.name,
+        type = file.mimetype;
+      var uploadpath =  path.resolve(__dirname, '../uploads/' + name);
 
-
-
-
-
-
-
+      file.mv(uploadpath,function(err){
+        if(err){
+          console.log("File Upload Failed",name,err);
+          res.redirect("errorforupload")
+        }
+        else {
+          console.log("File Uploaded",name);
+          res.redirect('completeforupload')
+    }
+  });
+}
+else{
+  res.redirect('errorforupload')
+  res.end();
+};
+})
 
 
  app.get('/record', isLoggedIn, function(req, res){
-  res.render('record', {
-   user:req.user
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "123456",
+    database: "nodejs_login",
+});
+var sqlforrecord = 'select meetingname ,opendate,meetingroomcode from reservation'
+con.query(sqlforrecord, function (err, result) {
+  console.log(result);
+  meetingdata = result;
+  if (err) {
+            res.redirect('errorr')
+          } else {
+            res.render('record',{meetingdata:meetingdata,user:req.user})
+          }
+      });
+  
   });
- });
+
+
  app.get('/logout', function(req,res){
   req.logout();
   res.redirect('/');

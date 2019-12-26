@@ -10,8 +10,8 @@ var passport = require('passport');
 var flash = require('connect-flash');
 require('./config/passport')(passport);
 var logger = require('morgan');
-
-
+var upload = require('express-fileupload');
+var formidable = require('formidable');
 
 
 const mysql = require('mysql');
@@ -41,6 +41,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/uploads')));
 app.use(express.static(path.join(__dirname, '/kendo')));
 app.use(express.static(path.join(__dirname, '/public/stylesheets')));
 app.use(morgan('dev'));
@@ -63,7 +64,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.get(/(.*)\.(jpg|gif|png|ico|css|js|txt)/i, function(req, res) {
+app.get(/(.*)\.(jpg|gif|png|ico|css|js|txt|svg|ttf|eot|woff)/i, function(req, res) {
     res.sendfile(__dirname + "/" + req.params[0] + "." + req.params[1], function(err) {
         if (err) res.send(404);});
     });
