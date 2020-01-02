@@ -1,23 +1,29 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <!--meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"-->
     <title>首頁</title>
-    <link rel="stylesheet" href="style/css/homepage.css">
+    <link rel="stylesheet" href="/css/homepage.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="/kendo/css/kendo.common-material.min.css">
     <link rel="stylesheet" href="/kendo/css/kendo.material.min.css">
     <script src="/jquery/jquery-2.1.4.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="/kendo/js/kendo.all.min.js"></script>
+ 
+
+ 
 </head>
-<body>  
-        <img src="/style/picture/homeTitlePicture.jpg" >
-        <div id="container">
+
+<body>
+    <img
+        src="https://1.bp.blogspot.com/-5LGvxa85lK4/XeZzyMnlLaI/AAAAAAAARtM/IJTYFA6b35QWYmQHhta9u1cTPFiAGqI8gCLcBGAsYHQ/s1600/homeTitlePicture.jpg">
+    <div id="container">
         <nav>
             <div id="logo">
-                會議管理系統                
+                會議管理系統
             </div>
             <ul id=menu>
                 <li><a href="/homepage">首頁</a></li>
@@ -25,93 +31,164 @@
                 <li><a href="/checkin">會議簽到</a></li>
                 <li><a href="/record">會議記錄</a></li>
                 <li><a href="/edit">編輯會議/參加人員</a></li>
-                <li><a href="/membertest">excel測試</a></li>
             </ul>
-        </nav>   
+        </nav>
         <header>
-              
+
             <div id="links">
-                <a href="">登出</a>
+                <a href="/logout">登出</a>
             </div>
             <div id="user-name">
                 <h3>使用者:<%= user.username %></h3>
             </div>
-        </header> 
-        
-        
-        <main>           
-                            <form action="datainsert" method="post">
-                            <div class="main_func" id="selectByEq_fbtn">
-                              <div class="main_func_text">預約會議室</div>
-                              <div class="inputer" name="meetingname" type= "text" >
-                                會議名稱：<input name="meetingname" class="inparea"type="text">
-                             </div>
-                             <div class="inputer" name="meetingname" type= "text" >
-                                    會議代碼(由數字組成)：<input name="meetingroomcode" class="inparea" type="int">
-                                    <h1>必填!!請熟記之後修改會議需做使用</h1>
-                                 </div>
-                                    <div class="inputer" name="room" type= "text" >
-                                            會議室編號：<select name="meetingroom" class="inparea"type="text">
-                                                    <option value ="一號會議室" >一號會議室</option>
-                                                    <option value = "二號會議室">二號會議室</option>
-                                                    <option value = "三號會議室">三號會議室</option>
-                                                    <option value = "四號會議室">四號會議室</option>
-                                            </select>
-                                    </div>                          
-                                    <div class="inputer" name="opendate" class="inparea" type="Date" >
-                                           開會日期：<input type="date" name="opendate" class="inparea" type="Date">
-                                    </div>
-                                    
-                                            <div class="inputer" name="start" type="text">
-                                            開始時間：<select name="StartTime" class="inparea" type="text">
-                                                    <option value ="7:00">7:00</option>
-                                                    <option value ="8:00">8:00</option>
-                                                    <option value ="9:00">9:00</option>
-                                                    <option value ="10:00">10:00</option>
-                                                    <option value ="11:00">11:00</option>
-                                                    <option value ="12:00">12:00</option>
-                                                    <option value ="13:00">13:00</option>
-                                                    <option value ="14:00">14:00</option>
-                                                    <option value ="15:00">15:00</option>
-                                                    <option value ="16:00">16:00</option>
-                                                    <option value ="17:00">17:00</option>
-                                            </select>
-                                            </div>        
-                                            <div class="inputer"  name="end" type="text">
-                                                    結束時間：<select name="endtime" class="inparea"type="text">
-                                                            <option value ="8:00">8:00</option>
-                                                            <option value ="9:00">9:00</option>
-                                                            <option value ="10:00">10:00</option>
-                                                            <option value ="11:00">11:00</option>
-                                                            <option value ="12:00">12:00</option>
-                                                            <option value ="13:00">13:00</option>
-                                                            <option value ="14:00">14:00</option>
-                                                            <option value ="15:00">15:00</option>
-                                                            <option value ="16:00">16:00</option>
-                                                            <option value ="17:00">17:00</option>
-                                                            <option value ="18:00">18:00</option>
-                                                    </select>
-                                            </div>
-                                                    <div class="inputer" name="unit" type="text">
-                                                            開會單位：<select name="department" class="inparea"type="text">
-                                                                    <option value ="婦產科">婦產科</option>
-                                                                    <option value ="精神科">精神科</option>
-                                                                    <option value ="泌尿科">泌尿科</option>
-                                                                    <option value ="科科">科科</option>
-                                                            </select>
-                                                    </div>               
-                                    <div class="form-btn">
-                                    <button type="submit" value="submit" class="btn btn-primary">確認</button>
-                                    </div>
-                            </form>
-                                <!--/div--> 
-                           
-                              
-                            </div>
-                    </div>    
-                </main>  
-        </div>
+        </header>
+
+        <main>
+            <div class="main_func" id="selectByEq_fbtn">
+                <div class="main_func_text">預約會議室</div>
+                <div class="inputer" name="meetingname" type= "text" >
+                  會議名稱：<input name="meetingname" class="inparea"type="text"id="meetingname">
+               </div>
+               <div class="inputer" name="meetinroomcode" type= "text" >
+                會議編號：<input name="meetingroomcode" class="inparea"type="text"id="meetingroomcode">
+             </div>
+              
+                      <div class="inputer" name="room" type= "text" >
+                              會議室編號：<select name="meetingroom" class="inparea"type="int"id="meetingroom">
+                                      <option value ="1" >一號會議室</option>
+                                      <option value = "2">二號會議室</option>
+                                      <option value = "3">三號會議室</option>
+                                      <option value = "4">四號會議室</option>
+                              </select>
+                      </div>                          
+                      <div class="inputer" name="opendate" class="inparea" type="Date" >
+                             開會日期：<input type="date" name="opendate" class="inparea" type="Date"id="opendate">
+                      </div>
+                      
+                              <div class="inputer" name="start" type="text">
+                              開始時間：<select name="StartTime" class="inparea" type="text"id="StartTime">
+                                      <option value ="7:00">7:00</option>
+                                      <option value ="8:00">8:00</option>
+                                      <option value ="9:00">9:00</option>
+                                      <option value ="10:00">10:00</option>
+                                      <option value ="11:00">11:00</option>
+                                      <option value ="12:00">12:00</option>
+                                      <option value ="13:00">13:00</option>
+                                      <option value ="14:00">14:00</option>
+                                      <option value ="15:00">15:00</option>
+                                      <option value ="16:00">16:00</option>
+                                      <option value ="17:00">17:00</option>
+                              </select>
+                              </div>        
+                              <div class="inputer"  name="end" type="text">
+                                      結束時間：<select name="endtime" class="inparea"type="text" id="endtime">
+                                              <option value ="8:00">8:00</option>
+                                              <option value ="9:00">9:00</option>
+                                              <option value ="10:00">10:00</option>
+                                              <option value ="11:00">11:00</option>
+                                              <option value ="12:00">12:00</option>
+                                              <option value ="13:00">13:00</option>
+                                              <option value ="14:00">14:00</option>
+                                              <option value ="15:00">15:00</option>
+                                              <option value ="16:00">16:00</option>
+                                              <option value ="17:00">17:00</option>
+                                              <option value ="18:00">18:00</option>
+                                      </select>
+                              </div>
+                                      <div class="inputer" name="unit" type="text">
+                                              開會單位：<select name="department" class="inparea"type="text"id="department">
+                                                      <option value ="婦產科">婦產科</option>
+                                                      <option value ="精神科">精神科</option>
+                                                      <option value ="泌尿科">泌尿科</option>
+                                                      <option value ="科科">科科</option>
+                                              </select>
+                                      </div>              
+                                      <div id="example" role="application">
+                                        <div class="demo-section k-content">
+                                            <div>
+                                                <label for="optional" id="employees">Employees</label>
+                                                <label for="selected">Developers</label>
+                                                <br />
+                                             
+                                        <select id="optional">   
+                                      <option><%=memberselect[0].username%>
+                                              <%=memberselect[0].name%>
+                                             <%=memberselect[0].department%>
+                                                                             </option>
+                                     <option>
+                                             <%=memberselect[1].username%>
+                                            <%=memberselect[1].name%>
+                                            <%=memberselect[1].department%>
+                                        </option>
+                                 <option>
+                                <%=memberselect[2].username%>
+                                <%=memberselect[2].name%>
+                                <%=memberselect[2].department%>
+                        </option>
+                        </select>
+                        <select id="selected"></select>
+                    </div>
+                </div>
+                <div class="form-btn">
+                    <button class="btn btn-primary" id="insert_btn" style="float: right;margin-left: 5px;">新增</button>
+                    <button class="btn btn-danger" id="clean_btn" style="float: right;">清除</button>
+                    
+                </div>            
+        </main>
+            
     </div>
 </body>
+    <script>   
+    $(document).ready(function(){
+        $("#optional").kendoListBox({
+                connectWith: "selected",
+                toolbar: {
+                    tools: ["moveUp", "moveDown", "transferTo", "transferFrom", "transferAllTo", "transferAllFrom"]
+                }
+            });
 
+            $("#selected").kendoListBox();
+
+        $("#clean_btn").click(function(){
+        $("#department").val("");
+        $("#StartTime").val("");
+        $("#endtime").val("");
+        $("#opendate").val("");
+        $("#meetingroom").val("");
+        $("#meetingname").val("");
+        $("#meetingroomcode").val("");
+        $("#selected").val("");
+            });
+        });
+
+         $("#insert_btn").click(function(){
+         var params = {
+           "DEPARTMENT" : $("#department").val(),
+           "STARTTIME" : $("#StartTime").val(),
+            "ENDTIME" : $("#endtime").val(),
+            "OPENDATE" : $("#opendate").val(),
+            "MEETINGROOM" : $("#meetingroom").val(),
+            "MEETINGNAME" : $("#meetingname").val(),
+            "MEETINGROOMCODE" : $("#meetingroomcode").val(),
+
+        };
+    $.ajax({
+    
+    type:"post",
+    url:"/insert",
+    dataType:"json",
+    data: params
+    }).done(function(e){
+    if(e == true){
+        alert("新增成功");
+    }
+})
+}
+    
+);
+
+    </script>
+    
+
+    
 </html>

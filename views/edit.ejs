@@ -4,153 +4,17 @@
     <meta charset="UTF-8">
     <!--meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge"-->
+    <link rel="stylesheet" href="/css/homepage.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/kendo/css/kendo.common-material.min.css">
+    <link rel="stylesheet" href="/kendo/css/kendo.material.min.css">
+    <script src="/jquery/jquery-2.1.4.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="/kendo/js/kendo.all.min.js"></script>
+    <script src="http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js"></script>
     <title>首頁</title>
-    <style>
-        body, html{
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-    *{
-        margin: 0;
-        padding: 0;
-        font-family: monospace;
-        box-sizing: border-box;
-        transition: all ease-in-out .2s;   
-    }
-    #container{
-        top: 50PX;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    }
-    nav{
-        display: block;
-        position: absolute;
-        top: 100px;
-        left: 0;
-        width: 200px;
-        margin-left: 0px;
-        height: 100%;   
-        background-color: #333333 ;
-    
-    }
-    #logo{
-    
-    height: 50px;
-    background-color: #00AA00;
-    color: #f7f7f7;
-    text-align: center;
-    line-height: 50px;
-    font-size: 1.3em;
-    font-family: arial;
-    }
-    #menu{
-        width: 100%;
-        background-color: #333333;
-    }
-    
-    #menu li{
-        width: 100%;
-        height: 50px;
-        line-height: 50px;
-        
-    }
-    
-    #menu li>a { 
-        font-size: 0.8em;
-        font-family: arial;
-        width: 100%;
-        height: 100%;
-        color: #f7f7f7;
-        display: block;
-        text-align: center;
-        text-decoration: none;
-    }
-    #menu li:hover{
-        background-color: #151515;
-        
-    }
-    #menu li>a:hover{
-        color: #1e90ff;
-    }
-    header{
-        width: calc(100% - 200px);
-        height: 50px;
-        position: absolute;
-        display: block;
-        top: 100px;
-        left: 200px;
-        background-color: #00AA00;
-        color: #00AA00;
-        line-height: 40px;
-    }
-    header #links {
-        
-        float: right;
-        height: 60px;
-        display: block;
-        color: #f7f7f7;
-        font-size: 2em;
-        
-    }
-    #links>a{
-        text-decoration: none;
-        padding: 0.25em;
-        height: 100%;
-        width: 100%;
-        display: block;
-        float: right;
-        border:0.5px blue solid;
-        color: blue;
-    }
-    
-    #user-name{
-        line-height: 50px;
-        
-        color: blue;
-        float:right;
-        font-size: 2em;
-    }
-    #user-name>p{
-        color: blue;
-        float:right;
-        height: 100%;
-        width: 100%;
-    }
-    
-    #links:hover{
-    background-color: #1e90ff;
-    }
-    
-    main{
-        top: 200px;
-        position: absolute;
-        left: 200px;
-       
-    }
-    
-    .main_func_text{
-        color: #1322ec;
-       font-size: large;
-    
-    }
-    
-    main #table{
-        height: 600px;
-        width: 600px; 
-    }
-    
-    main #info-menu{
-       float: left;
-      }
-    select{
-    width: 100px;
-    }
-    .inputer{
-        margin: 20px;
-      }
-        </style>
+   
+     
 </head>
 <body>
     <img src="https://1.bp.blogspot.com/-5LGvxa85lK4/XeZzyMnlLaI/AAAAAAAARtM/IJTYFA6b35QWYmQHhta9u1cTPFiAGqI8gCLcBGAsYHQ/s1600/homeTitlePicture.jpg" >
@@ -177,34 +41,26 @@
         </div>
     </header> 
     <main>
-    <form action="update" method="post">
-      <div class="main_func" id="selectByEq_fbtn">
-        <div class="main_func_text">預約資料</div>
-        <h3>會議編號: 000000</h3>
-        <h3>申請人: <%= user.username %></h3>
-        <h3>申請人單位: 專題孤兒院</h3>
-        <h3>分機: 000000</h3>
-       </div>
+        <div class="inputer">
+            會議代碼： <input type="text" name="updatecode" class="inparea"id="updatecode">
+            </div>
        <div class="inputer">
-        會議代碼：<input type="int" name="updatemeetingcode" class="inparea">
-        </div>
-       <div class="inputer">
-        會議名稱：<input type="text" name="updatetopic" class="inparea">
+        預更改的會議名稱：<input type="text" name="updatetopic" class="inparea"id="updatetopic">
         </div>
               <div class="inputer">
-                      會議室編號：<select name="updateroom" class="inparea" type="text">
-                              <option value ="第一會議室">第一會議室</option>
-                              <option value ="第二會議室">第二會議室</option>
-                              <option value ="第三會議室">第三會議室</option>
-                              <option value ="第四會議室">第四會議室</option>
+                      預更改會議室：<select name="updateroom" class="inparea" type="int"id="updateroom">
+                              <option value ="1">第一會議室</option>
+                              <option value ="2">第二會議室</option>
+                              <option value ="3">第三會議室</option>
+                              <option value ="4">第四會議室</option>
                       </select>
               </div>                          
               <div class="inputer">
-                     開會日期：<input type="date" name="updateopendate" class="inparea" type="date">
+                     預更改開會日期：<input type="date" name="updateopendate" class="inparea" type="date"id="updateopendate">
               </div>
               
                       <div class="inputer">
-                      開始時間：<select  class="inparea" name="updatestarttime"type="text">
+                      預更改開始時間：<select  class="inparea" name="updatestarttime"type="text"id="updatestarttime">
                         <option value ="7:00">7:00</option>
                         <option value ="8:00">8:00</option>
                         <option value ="9:00">9:00</option>
@@ -219,7 +75,7 @@
                       </select>
                       </div>        
                       <div class="inputer">
-                     結束時間：<select  class="inparea" name="updateendtime" type ="text">
+                     預更改結束時間：<select  class="inparea" name="updateendtime" type ="text"id="updateendtime">
                                 <option value ="8:00">8:00</option>
                                 <option value ="9:00">9:00</option>
                                 <option value ="10:00">10:00</option>
@@ -234,7 +90,7 @@
                               </select>
                       </div>
                               <div class="inputer">
-                                      開會單位：<select name="updatedepartment" class="inparea" type="text">
+                                預更改開會單位：<select name="updatedepartment" class="inparea" type="text"id="updatedepartment">
                                         <option value ="婦產科">婦產科</option>
                                         <option value ="精神科">精神科</option>
                                         <option value ="泌尿科">泌尿科</option>
@@ -242,11 +98,41 @@
                                       </select>
                               </div>
               <div class="form-btn">
-                  <button type="submit" value="submit" class="btn btn-primary">確定</button>
-            </div>
-          </form>  
+                  <button type="submit" value="submit" class="btn btn-primary"id="insert_btn">編輯會議</button>
+            </div> 
     </main> 
-</div>    
-<script src="homepage.js"></script>
+</div>
 </body>
-</html>
+</div>    
+    <script>
+        $(document).ready(function(){ 
+            $("#insert_btn").click(function(){
+         var params = {  
+                "UPDATEROOM" : $("#updateroom").val(),
+                "UPDATESTARTTIME" : $("#updatestarttime").val(),
+                "UPDATEENDTIME" : $("#updateendtime").val(),
+                "UPDATEOPENDATE" : $("#updateopendate").val(),
+                "UPDATEDEPARTMENT" : $("#updatedepartment").val(),
+                "UPDATETOPIC" :$("#updatetopic").val(),
+                "UPDATECODE" :$("#updatecode").val(),
+         };
+         $.ajax({
+    
+    type:"post",
+    url:"/update",
+    dataType:"json",
+    data: params
+    }).done(function(e){
+    if(e == true){
+        alert("編輯成功");
+    }
+})
+}
+    
+)}
+        )
+          
+    
+        </script>      
+
+    </html>

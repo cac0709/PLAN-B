@@ -80,7 +80,7 @@ header{
 header #links {
     
     float: right;
-    height: 50px;
+    height: 60px;
     display: block;
     color: #f7f7f7;
     font-size: 2em;
@@ -142,4 +142,29 @@ width: 100px;
 .inputer{
     margin: 20px;
   }
-  
+  .demo-section label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: inline-block;
+}
+#example {
+    position:absolute;
+}
+#employees {
+    width: 270px;
+}
+
+#example .demo-section {
+    max-width: none;
+    width: 515px;
+}
+
+#example .k-listbox {
+    width: 236px;
+    height: 310px;
+}
+
+#example .k-listbox:first-of-type {
+    width: 270px;
+    margin-right: 1px;
+}

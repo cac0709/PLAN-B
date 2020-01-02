@@ -92,6 +92,49 @@ con.query(sqlforsearch, function(err, rows) {
   }
   );
 });
+
+app.post('/memberlist',function(req,res,next){
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "123456",
+    database: "nodejs_login",
+  });
+  var sql = "select username as USERNAME,name as NAME,department as MEMBERDEPARTMENT,sign as SIGN from users"
+
+  con.query(sql,function(err,rows){
+    console.log(rows);
+    if(err){
+      console.log(err);
+    }else{
+      res.json(rows);
+      //res.end();
+    }
+  })
+});
+app.post('/signfun',function(req,res){
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "123456",
+    database: "nodejs_login",
+  });
+  var username = req.body['USERNAME'];
+  console.log(username);
+  var sql = "update users set sign =  'O'  where username = '"+username+"'";
+
+  con.query(sql,function(err,rows){
+    console.log(rows);
+    if(err){
+      console.log(err);
+    }else{
+      res.send(true);
+      //res.end();
+    }
+  })
+});
+
+
 //edit ejs function
  app.get('/edit', isLoggedIn, function(req, res){
   res.render('edit', {
@@ -120,28 +163,29 @@ con.query(sqlforsearch, function(err, rows) {
       password: "123456",
       database: "nodejs_login",
   });
-  var data = {};
-  var updateroom = req.body.updateroom
-  var updatestarttime = req.body.updatestarttime
-  var updateendtime = req.body.updateendtime
-  var updateopendate = req.body.updateopendate
-  var updatedepartment = req.body.updatedepartment
-  var updatetopic = req.body.updatetopic
-  var updatemeetingcode = req.body.updatemeetingcode
-  
+  var updateroom = req.body['UPDATEROOM'];
+  var updatestarttime = req.body['UPDATESTARTTIME'];
+  var updateendtime = req.body['UPDATEENDTIME'];
+  var updateopendate = req.body['UPDATEOPENDATE'];
+  var updatedepartment = req.body['UPDATEDEPARTMENT'];
+  var updatetopic = req.body['UPDATETOPIC'];
+  var updatemeetingcode = req.body['UPDATECODE'];
   var sqlforedit = "update reservation set roomid='" + updateroom + "',starttime='" +updatestarttime + "',endtime='" +updateendtime + "',opendate='" +updateopendate + "',department='" +updatedepartment + "',meetingname='" +updatetopic + "' where meetingroomcode=" + updatemeetingcode;
-  con.query(sqlforedit, function(err, rows) {
-    console.log(rows);
-    data.edit = rows;
-    if (err)  {
-           res.redirect('erroredit');
-           } else {
-             res.render('complete');
-           }
-    
-   })
+  con.query(sqlforedit,function(err,rows){
+    if(err){
+      console.log(err);
+    }else{
+      res.send(true);
+    }
+  })
 
-  });
+});
+
+
+
+
+
+
   app.use(upload());
   app.post('/upload',function(req,res){
     console.log(req.files);
@@ -197,52 +241,52 @@ con.query(sqlforrecord, function (err, result) {
 //reservation.ejs insert and search
 
  app.get('/reservation', isLoggedIn, function(req, res){
-  res.render('reservation.ejs', {
-   user:req.user
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "123456",
+    database: "nodejs_login",
+});
+var sql = 'select name ,username,department from users'
+con.query(sql, function (err, result) {
+  console.log(result);
+    memberselect = result;
+  if (err) {
+            res.redirect('errorr')
+          } else {
+            res.render('reservation',{memberselect:memberselect,user:req.user})
+          }
+      });
+  
   });
- });
- 
+
     
- app.post('/datainsert' ,urlencodedParser, function(req, res) {
-      console.log(req.body);
+ app.post('/insert' , function(req, res) {
       var con = mysql.createConnection({
 				host: "localhost",
 				user: "root",
 				password: "123456",
 				database: "nodejs_login",
 		});
-    
-		con.connect(function(err) {
-		 if (err) throw err;
-      console.log("Connected!");
-      var dataresualt = {};
-      var start = req.body.StartTime
-      var end = req.body.endtime
-      var room = req.body.meetingroom
-      var MeetingDate = req.body.opendate
-      var department = req.body.department
-      var meetingname = req.body.meetingname
-      var meetingroomcode = req.body.meetingroomcode
+      var start = req.body['STARTTIME'];
+      var end = req.body['ENDTIME'];
+      var room = req.body['MEETINGROOM'];
+      var MeetingDate = req.body['OPENDATE'];
+      var department = req.body['DEPARTMENT'];
+      var meetingname = req.body['MEETINGNAME'];
+      var meetingroomcode = req.body['MEETINGROOMCODE'];
 		  var sql = "INSERT INTO reservation (roomid,starttime,endtime,opendate,department,meetingname,meetingroomcode ) VALUES ('"+room+"','"+start+ "' ,'"+end+ "','"+MeetingDate+ "','"+department+ "','"+meetingname+ "','"+meetingroomcode+"')";
-      console.log(sql);
-		  con.query(sql, function (err, result) {
-          console.log(result);
-          dataresualt.reservationinsert = result;
-          if (err) {
-                    res.redirect('errorreservation')
-                  } else {
-                    res.render('complete',{data2:dataresualt.reservationinsert})
-                  }
-              });
-        
-        
-        
-        
-        
-        
+            con.query(sql,function(err,rows){
+              if(err){
+                console.log(err);
+              }else{
+                res.send(true);
+              }
+            })
+      
         });
 
-      });
+  
 
 
  };

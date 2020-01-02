@@ -21,7 +21,7 @@ const connection = mysql.createConnection({
     password: "123456",
     database: "nodejs_login",
 });
-let sql = "delete from reservation where opendate  < sysdate()";
+/*let sql = "delete from reservation where opendate  < sysdate()";
 connection.query(sql, (err, data) => {
     if (err) {
         throw err;
@@ -30,7 +30,7 @@ connection.query(sql, (err, data) => {
     // 執行成功
     console.log('delete success!');
     console.log(data);
-});
+});*/
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

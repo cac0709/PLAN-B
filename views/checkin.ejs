@@ -5,7 +5,7 @@
     <!--meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge"-->
     <title>首頁</title>
-    <link rel="stylesheet" href="style/css/homepage.css">
+    <link rel="stylesheet" href="/css/homepage.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="/kendo/css/kendo.common-material.min.css">
     <link rel="stylesheet" href="/kendo/css/kendo.material.min.css">
@@ -48,10 +48,10 @@
                     <div class ="hide_selecter" id="selectBydata"></div>
                 <div class="inputer" name="searchroomid" >
                     會議室編號：<select name="searchroomid" class="inparea"type="text" id = "searchroom_id">
-                            <option value ="一號會議室" >一號會議室</option>
-                            <option value = "二號會議室">二號會議室</option>
-                            <option value = "三號會議室">三號會議室</option>
-                            <option value = "四號會議室">四號會議室</option>
+                            <option value ="1" >一號會議室</option>
+                            <option value = "2">二號會議室</option>
+                            <option value = "3">三號會議室</option>
+                            <option value = "4">四號會議室</option>
                     </select>
                 <div class="inputer"  name="searchstarttime" >
                     開始時間：<select name="searchstarttime" class="inparea"type="text"id ="starttime_id">
@@ -98,15 +98,15 @@
         <div class="inputer"  name="searchtopic">
             會議名稱：<input name="searchtopic" class="inparea"type="text"id = "meetname_id">
          </div>
-         <div class="inputer"  name="searchtopic">
-                會議代碼：<input name="searchmeetingroomcode" class="inparea"type="int" id="meetcode_id">
-             </div>
             </table>
             <div class="form-btn">
                 <button class="btn btn-danger" id="clean_btn">清除</button>
                 <button type="submit" value="submit" class="btn btn-primary" id = "search">搜尋</button>
                 </div>
                 <div id="data_grid" class="col-12" style="margin: 4%;margin-top: 0%;"></div>
+                <div class="uk-card  uk-text-left" id="objList_window" style="display:none">
+                <div id="record_grid"></div>
+                
             
                 </main> 
             </div>
@@ -126,7 +126,7 @@
                 $("#date_id").val("");
                 $("#department_id").val("");
                 $("#meetname_id").val("");
-                $("#meetcode_id").val("");
+
           
           $("#search").click(function(){
             $("#searchfun").toggle(200);
@@ -143,9 +143,17 @@
                 $("#date_id").val("");
                 $("#department_id").val("");
                 $("#meetname_id").val("");
-                $("#meetcode_id").val("");
       })
     });
+    
+    $("#objList_window").kendoWindow({
+            title: "參加人員",
+            width: "50%",
+            visible: false,
+            modal: true,
+            action: ["Close"]
+        });
+
         
         var gridCount = 0;
         $("#search").click(function(){
@@ -163,7 +171,6 @@
                         "OPENDATE" : $("#date_id").val(),
                         "DEPARTMENT" : $("#department_id").val(),
                         "MEETINGNAME" : $("#meetname_id").val(),
-                        "MEETCODE" : $("#meetcode_id").val(),
                 };
         
         
@@ -180,13 +187,12 @@
                         schema: {
                             model: {
                                 fields: {
-                                    ROOMID: { type: "text" },
+                                    ROOMID: { type: "INT" },
                                     STARTTIME: { type: "text" },
                                     ENDTIME: { type: "text" },
                                     OPENDATE: { type: "date" },
                                     DEPARTMENT: { type: "text" },
                                     MEETINGNAME: { type: "text" },
-                                    MEETCODE: { type: "int" },
                                 }
                             }
                         },
@@ -200,7 +206,8 @@
                           {field:"OPENDATE",title:"日期",width:"10%"},
                           {field:"DEPARTMENT",title:"部門",width:"10%"},
                           {field:"MEETINGNAME",title:"主題",width:"10%"},
-                          {field:"MEETCODE",title:"會議代碼",width:"10%"},
+                          { command: { text: "參加人員",click:memberlist}, title: " ", width: "10%" }
+                         
                   ],
                   sortable:true,
                   scrollable: true,
@@ -211,9 +218,69 @@
                                 },
           });
         });
+       
+        function memberlist(e){
+        e.preventDefault();
+        var loc = this.dataItem($(e.currentTarget).closest("tr"));
+        $("#record_grid").kendoGrid({
+            dataSource: {
+                transport: {
+                    read: {
+                        method: "post",
+                        url: "/memberlist",
+                        dataType: "json",
+                        data: { "ROOMID": loc.ROOMID}
+                    }
+                },
+                schema: {
+                    model: {
+                        fields: {
+                            USERNAME: { type: "text" },
+                            NAME: { type: "text" },
+                            MEMBERDEPARTMENT: { type: "text" },
+                            SIGN: { type: "text" },
+
+                        }
+                    }
+                },
+                pageSize: 20,
+            },
+            height: 550,
+            sortable: true,
+            pageable: {
+                input: true,
+                numeric: false
+            },
+            columns: [
+                { field: "USERNAME", title: "帳號", width: "10%" },
+                { field: "NAME", title: "姓名", width: "20%" },
+                { field: "MEMBERDEPARTMENT", title: "部門", width: "20%" },
+                { field: "SIGN", title: "簽到狀況", width: "20%" },
+                { command: { text: "簽到",click:signfun}, title: "簽到", width: "10%" }
+               
+            ]
+        });
+        function signfun(e) {
+        e.preventDefault();
+        var loc = this.dataItem($(e.currentTarget).closest("tr"));
+        if (confirm("是否簽到") == true) {
+            $.ajax({
+                type: "POST",
+                url: "/signfun",
+                data: {"USERNAME": loc.USERNAME},
+                dataType: "json",
+            }).done(function (e) {
+                if (e == true) $("#record_grid").data("kendoGrid").dataSource.read();
+            })
+        } else 
+        return false;
+    } 
         
+        
+        $('#objList_window').data("kendoWindow").center().open();
+}
         </script>
         </main> 
-    </div>    
+       
 </body>
 </html>
