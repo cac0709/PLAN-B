@@ -102,12 +102,17 @@
                                                       <option value ="泌尿科">泌尿科</option>
                                                       <option value ="科科">科科</option>
                                               </select>
-                                      </div>              
+                                      </div>   
+                                      <div class="inputer" name="meetingname" type= "text" >
+                                        <textarea style="width:300px;height:100px;"id = "note">
+                                            　輸入備註
+                                            </textarea>
+                                     </div>           
                                       <div id="example" role="application">
                                         <div class="demo-section k-content">
                                             <div>
-                                                <label for="optional" id="employees">Employees</label>
-                                                <label for="selected">Developers</label>
+                                                <label for="optional" id="employees">選取參加人員</label>
+                                                <label for="selected">已選取人員</label>
                                                 <br />
                                              
                                         <select id="optional">   
@@ -158,6 +163,7 @@
         $("#meetingname").val("");
         $("#meetingroomcode").val("");
         $("#selected").val("");
+        $("#note").val("");
             });
         });
 
@@ -170,6 +176,7 @@
             "MEETINGROOM" : $("#meetingroom").val(),
             "MEETINGNAME" : $("#meetingname").val(),
             "MEETINGROOMCODE" : $("#meetingroomcode").val(),
+            "NOTE" : $("#note").val(),
 
         };
     $.ajax({

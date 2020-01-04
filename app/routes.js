@@ -275,7 +275,8 @@ con.query(sql, function (err, result) {
       var department = req.body['DEPARTMENT'];
       var meetingname = req.body['MEETINGNAME'];
       var meetingroomcode = req.body['MEETINGROOMCODE'];
-		  var sql = "INSERT INTO reservation (roomid,starttime,endtime,opendate,department,meetingname,meetingroomcode ) VALUES ('"+room+"','"+start+ "' ,'"+end+ "','"+MeetingDate+ "','"+department+ "','"+meetingname+ "','"+meetingroomcode+"')";
+      var note = req.body['NOTE'];
+		  var sql = "INSERT INTO reservation (roomid,starttime,endtime,opendate,department,meetingname,meetingroomcode,note ) VALUES ('"+room+"','"+start+ "' ,'"+end+ "','"+MeetingDate+ "','"+department+ "','"+meetingname+ "','"+meetingroomcode+"','"+note+"')";
             con.query(sql,function(err,rows){
               if(err){
                 console.log(err);
