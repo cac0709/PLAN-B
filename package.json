@@ -16,7 +16,7 @@
   "express": "^4.17.1",
   "express-fileupload": "^1.1.6",
   "express-session": "^1.17.0",
-  "fast-csv": "^3.5.0",
+  "fast-csv": "^4.3.6",
   "formidable": "^1.2.1",
   "fs": "0.0.1-security",
   "morgan": "^1.9.1",
