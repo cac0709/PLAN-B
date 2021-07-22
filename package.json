@@ -29,7 +29,7 @@
   "path": "^0.12.7",
   "xls-to-json": "^0.5.4",
   "xls-to-json-lc": "^0.3.4",
-  "xlsx": "^0.15.3",
+  "xlsx": "^0.17.0",
   "xlsx-to-json": "^0.3.0",
   "xlsx-to-json-lc": "^0.5.0"
  }
